@@ -8,6 +8,7 @@
 #### [CSES](https://cses.fi)
 * ✅ [Weird Algorithm](https://cses.fi/problemset/task/1068)
 * ✅ [Missing Number](https://cses.fi/problemset/task/1083)
+* ✅ [Repetitions](https://cses.fi/problemset/task/1069)
 
 #### [USACO](https://usaco.org/index.php)
 * ✅ [Fence Painting](https://usaco.org/index.php?page=viewproblem2&cpid=567)
