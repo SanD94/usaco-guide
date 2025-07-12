@@ -32,7 +32,6 @@
 
 # Executables
 *.exe
-*.out
 *.app
 
 ### VisualStudioCode ###
@@ -59,3 +58,4 @@ input
 output
 *.in
 *.out
+sol
