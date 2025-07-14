@@ -13,6 +13,7 @@
 * ✅ [Permutations](https://cses.fi/problemset/task/1070)
 * ✅ [Number Spiral](https://cses.fi/problemset/task/1071)
 * ✅ [Two Knights](https://cses.fi/problemset/task/1072)
+* ✅ [Two Sets](https://cses.fi/problemset/task/1092)
 
 #### [USACO](https://usaco.org/index.php)
 * ✅ [Fence Painting](https://usaco.org/index.php?page=viewproblem2&cpid=567)
