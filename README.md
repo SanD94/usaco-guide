@@ -13,6 +13,11 @@
 * ✅ [Permutations](https://cses.fi/problemset/task/1070)
 * ✅ [Number Spiral](https://cses.fi/problemset/task/1071)
 * ✅ [Two Knights](https://cses.fi/problemset/task/1072)
+* ✅ [Two Sets](https://cses.fi/problemset/task/1092)
+* ✅ [Bit Strings](https://cses.fi/problemset/task/1617)
+* ✅ [Trailing Zeros](https://cses.fi/problemset/task/1618)
+* ✅ [Coin Piles](https://cses.fi/problemset/task/1754)
+* ✅ [Palindrome Reorder](https://cses.fi/problemset/task/1755)
 
 #### [USACO](https://usaco.org/index.php)
 * ✅ [Fence Painting](https://usaco.org/index.php?page=viewproblem2&cpid=567)
