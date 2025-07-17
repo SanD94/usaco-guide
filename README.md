@@ -20,4 +20,10 @@
 * ✅ [Palindrome Reorder](https://cses.fi/problemset/task/1755)
 
 #### [USACO](https://usaco.org/index.php)
+
+##### Bronze
 * ✅ [Fence Painting](https://usaco.org/index.php?page=viewproblem2&cpid=567)
+* ✅ [Teleportation](https://usaco.org/index.php?page=viewproblem2&cpid=807)
+* ✅ [Promotion Counting](https://usaco.org/index.php?page=viewproblem2&cpid=591)
+
+
