@@ -22,6 +22,7 @@
 #### [CodeForces](https://codeforces.com)
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
 * ✅ [231A Team](https://codeforces.com/problemset/problem/231/A)
+* ✅ [546A Soldier and Bananas](https://codeforces.com/problemset/problem/546/A)
 
 
 #### [USACO](https://usaco.org/index.php)
