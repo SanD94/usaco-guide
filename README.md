@@ -38,5 +38,6 @@
 * ✅ [Mixing Milk](https://usaco.org/index.php?page=viewproblem2&cpid=855)
 * ✅ [The Cow-Signal](https://usaco.org/index.php?page=viewproblem2&cpid=665)
 * ✅ [Speeding Ticket](https://usaco.org/index.php?page=viewproblem2&cpid=568)
+* ✅ [The Lost Cow](https://usaco.org/index.php?page=viewproblem2&cpid=735)
 
 
