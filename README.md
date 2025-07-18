@@ -40,5 +40,6 @@
 * ✅ [Speeding Ticket](https://usaco.org/index.php?page=viewproblem2&cpid=568)
 * ✅ [The Lost Cow](https://usaco.org/index.php?page=viewproblem2&cpid=735)
 * ✅ [The Bovine Shuffle](https://usaco.org/index.php?page=viewproblem2&cpid=760)
+* ✅ [The Bucket List](https://usaco.org/index.php?page=viewproblem2&cpid=856)
 
 
