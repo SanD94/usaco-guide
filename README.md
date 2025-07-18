@@ -35,5 +35,6 @@
 * ✅ [Word Processor](https://usaco.org/index.php?page=viewproblem2&cpid=987)
 * ✅ [Bucket Brigade](https://usaco.org/index.php?page=viewproblem2&cpid=939)
 * ✅ [Shell Game](https://usaco.org/index.php?page=viewproblem2&cpid=891)
+* ✅ [Mixing Milk](https://usaco.org/index.php?page=viewproblem2&cpid=855)
 
 
