@@ -34,5 +34,6 @@
 * ✅ [Do You Know Your ABCs?](https://usaco.org/index.php?page=viewproblem2&cpid=1059)
 * ✅ [Word Processor](https://usaco.org/index.php?page=viewproblem2&cpid=987)
 * ✅ [Bucket Brigade](https://usaco.org/index.php?page=viewproblem2&cpid=939)
+* ✅ [Shell Game](https://usaco.org/index.php?page=viewproblem2&cpid=891)
 
 

@@ -1,6 +1,3 @@
 {
-    "code-runner.executorMap": {
-        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-        "cpp": "cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    }
+    "C_Cpp.clang_format_fallbackStyle": "LLVM"
 }
