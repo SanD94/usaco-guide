@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 
@@ -12,17 +13,17 @@ void set_io(string s) {
 
 int main(int argc, char const *argv[]) {
   set_io("mowing");
-  map<pair<int,int>,int> travel;
-  int dir[4][2] = {{-1,0}, {0, 1}, {1, 0}, {0, -1}};
+  vector<vector<int>> travel(2001, vector<int>(2001));
+  vector<vector<int>> dir = {{-1,0}, {0, 1}, {1, 0}, {0, -1}};
   string compass = "NESW";
   int N;
   int s, t = 1;
-  int cur_x = 0, cur_y = 0;
+  int cur_x = 1000, cur_y = 1000;
   char c;
-  unsigned int res = UINT32_MAX;
+  int res = 1001;
 
   cin >> N;
-  travel[{0, 0}] = t++;
+  travel[cur_x][cur_y] = t++;
   for (int i = 0; i < N; i++) {
     cin >> c >> s;
     int index = 0;
@@ -30,14 +31,14 @@ int main(int argc, char const *argv[]) {
     for(int j = 0; j < s; j++) {
       cur_x += dir[index][0];
       cur_y += dir[index][1];
-      int prev_t = travel[{cur_x, cur_y}];
+      int prev_t = travel[cur_x][cur_y];
 
-      if(prev_t) res = min(res, (unsigned int) t - prev_t);
-      travel[{cur_x, cur_y}] = t++;
+      if(prev_t) res = min(res, t - prev_t);
+      travel[cur_x][cur_y] = t++;
     }
     
   }
-  cout << (int) res << endl;
+  cout << (res == 1001 ? -1 : res) << endl;
 
   return 0;
 }
