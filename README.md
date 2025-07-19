@@ -45,3 +45,4 @@
 * ✅ [Circular Barn](https://usaco.org/index.php?page=viewproblem2&cpid=616)
 * ✅ [Block Game](https://usaco.org/index.php?page=viewproblem2&cpid=664)
 * ✅ [Team Tic Tac Toe](https://usaco.org/index.php?page=viewproblem2&cpid=831)
+* ✅ [Mowing the Field](https://usaco.org/index.php?page=viewproblem2&cpid=831)
