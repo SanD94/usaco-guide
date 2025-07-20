@@ -23,6 +23,7 @@
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
 * ✅ [231A Team](https://codeforces.com/problemset/problem/231/A)
 * ✅ [546A Soldier and Bananas](https://codeforces.com/problemset/problem/546/A)
+* ✅ [GymA Maximum Distance](https://codeforces.com/gym/102951/problem/A)
 
 
 #### [USACO](https://usaco.org/index.php)
