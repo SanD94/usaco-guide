@@ -52,3 +52,4 @@
 * ✅ [Stuck in a Rut](https://usaco.org/index.php?page=viewproblem2&cpid=1061)
 * ✅ [Milk Pails](https://usaco.org/index.php?page=viewproblem2&cpid=615)
 * ✅ [Diamond Collector](https://usaco.org/index.php?page=viewproblem2&cpid=639)
+* ✅ [Daisy Chains](https://usaco.org/index.php?page=viewproblem2&cpid=1060)
