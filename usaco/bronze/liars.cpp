@@ -1,4 +1,4 @@
-// https://usaco.org/index.php?page=viewproblem2&cpid=1060
+// https://usaco.org/index.php?page=viewproblem2&cpid=1228
 #include <algorithm>
 #include <iostream>
 #include <iterator>
@@ -7,25 +7,32 @@ using namespace std;
 
 constexpr int MAXN{1001};
 
+namespace std {
+istream &operator>>(istream &is, pair<char, int> &p) {
+  return is >> p.first >> p.second;
+}
+
+} // namespace std
+
 int main(int argc, char const *argv[]) {
-  int res = 1001;
+  int res = MAXN;
   int N, num;
   char c;
 
   cin >> N;
-  vector<pair<int, int>> cows(N);
+  vector<pair<char, int>> cows;
+  copy_n(istream_iterator<pair<char, int>>(cin), N, back_inserter(cows));
   for (int i = 0; i < N; i++) {
-    cin >> c >> num;
-    cows[i].first = num;
-    cows[i].second = c == 'G' ? 1 : -1;
+    int cnt = 0;
+    int pick = cows[i].second;
+    for (int j = 0; j < N; j++) {
+      if (cows[j].first == 'G' && cows[j].second > pick)
+        cnt++;
+      if (cows[j].first == 'L' && cows[j].second < pick)
+        cnt++;
+    }
+    res = min(res, cnt);
   }
-  sort(cows.begin(), cows.end());
-  vector<int> lte(N + 2), gte(N + 2);
-  for (int i = 0; i < N; i++)
-    lte[i + 1] = lte[i] + cows[i].second == -1;
-  for (int i = N; i>= 1; i--)
-    gte[i - 1] = gte[i] + cows[i-1].second == 1;
-  
 
   cout << res << endl;
   return 0;
