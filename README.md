@@ -55,3 +55,4 @@
 * ✅ [Daisy Chains](https://usaco.org/index.php?page=viewproblem2&cpid=1060)
 * ✅ [Counting Liars](https://usaco.org/index.php?page=viewproblem2&cpid=1228)
 * ✅ [Cow Gymnastics](https://usaco.org/index.php?page=viewproblem2&cpid=963)
+* ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=736)
