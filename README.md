@@ -57,3 +57,4 @@
 * ✅ [Cow Gymnastics](https://usaco.org/index.php?page=viewproblem2&cpid=963)
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=736)
 * ✅ [Triangles](https://usaco.org/index.php?page=viewproblem2&cpid=1011)
+* ✅ [Lifeguards](https://usaco.org/index.php?page=viewproblem2&cpid=784)
