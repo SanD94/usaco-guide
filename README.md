@@ -59,3 +59,4 @@
 * ✅ [Triangles](https://usaco.org/index.php?page=viewproblem2&cpid=1011)
 * ✅ [Lifeguards](https://usaco.org/index.php?page=viewproblem2&cpid=784)
 * ✅ [Why Did The Cow Cross The Road II](https://usaco.org/index.php?page=viewproblem2&cpid=712)
+* ✅ [Guess the Animal](https://usaco.org/index.php?page=viewproblem2&cpid=893)
