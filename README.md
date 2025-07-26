@@ -60,3 +60,6 @@
 * ✅ [Lifeguards](https://usaco.org/index.php?page=viewproblem2&cpid=784)
 * ✅ [Why Did The Cow Cross The Road II](https://usaco.org/index.php?page=viewproblem2&cpid=712)
 * ✅ [Guess the Animal](https://usaco.org/index.php?page=viewproblem2&cpid=893)
+
+##### Silver
+* ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
