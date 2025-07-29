@@ -63,6 +63,7 @@
 * ✅ [Load Balancing](https://usaco.org/index.php?page=viewproblem2&cpid=617)
 * ✅ [Sleeping in the Class](https://usaco.org/index.php?page=viewproblem2&cpid=1203)
 * ✅ [Contaminated Milk](https://usaco.org/index.php?page=viewproblem2&cpid=569)
+* ✅ [Cowntact Tracing](https://usaco.org/index.php?page=viewproblem2&cpid=1037)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
