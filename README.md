@@ -68,3 +68,4 @@
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
+* ✅ [Load Balancing](https://usaco.org/index.php?page=viewproblem2&cpid=619)
