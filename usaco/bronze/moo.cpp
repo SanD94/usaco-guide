@@ -17,58 +17,37 @@ int find_index(const string &s) {
 string create_string(const vector<vector<string>> &grammar, int t1, int t2,
                      int M, int J) {
   stringstream ss("");
-  int ni = 0;
-  bool commas = false;
-  bool mswitch = false;
+  int ni = 0, si = 0;
+  vector<Type> sentences(t1, IV);
+  sentences.insert(sentences.end(), t2, TV);
+  vector<int> indices(4, 0);
 
-  if (t2 > 0) {
-    commas = true;
-    ss << grammar[NOUN][ni++] << " " << grammar[TV][--t2] << " ";
-    for (int i = 0; i < M; i++)
-      ss << grammar[NOUN][ni++] << ", ";
-    ss << grammar[NOUN][ni++];
-    if (J > 0) {
-      mswitch = true;
-      ss << " " << grammar[CONJ][--J];
-    } else {
-      ss << ".";
-    }
+  for (auto s : sentences) {
+    ss << grammar[NOUN][ni++] << " " << grammar[s][indices[s]++];
+    if (s == TV)
+      ss << " " << grammar[NOUN][ni++];
+    if (si % 2 == 0 && J > 0)
+      ss << " " << grammar[CONJ][--J] << " ";
+    else
+      ss << ". ";
+    si++;
   }
 
-  if (commas && t1 + t2 > 0)
-    ss << " ";
+  string res = "";
+  if (!sentences.empty()) {
+    ss.seekp(-2, ios_base::end); // remove last ". "
 
-  while (t2--) {
-    ss << grammar[NOUN][ni++] << " " << grammar[TV][t2] << " "
-       << grammar[NOUN][ni++];
-    if (mswitch) {
-      ss << ".";
-      mswitch = false;
-    } else if (J > 0) {
-      ss << " " << grammar[CONJ][--J];
-      mswitch = true;
-    } else {
-      ss << ".";
-    }
-    if (t1 > 0 || t2 > 0)
-      ss << " ";
-  }
-  while (t1--) {
-    ss << grammar[NOUN][ni++] << " " << grammar[IV][t1];
-    if (mswitch) {
-      ss << ".";
-      mswitch = false;
-    } else if (J > 0) {
-      ss << " " << grammar[CONJ][--J];
-      mswitch = true;
-    } else {
-      ss << ".";
-    }
-    if (t1 > 0)
-      ss << " ";
+    if (sentences.back() == TV && M > 0)
+      while (M--)
+        ss << ", " << grammar[NOUN][ni++];
+
+    ss << ".t";
+
+    res = ss.str();
+    res.pop_back();
   }
 
-  return ss.str();
+  return res;
 }
 
 // C comma
@@ -80,12 +59,12 @@ pair<int, string> eval(const vector<vector<string>> &grammar, int C, int P) {
   for (int i = 0; i <= grammar[IV].size(); i++)
     for (int j = 0; j <= grammar[TV].size(); j++) {
       if (i + 2 * j > grammar[NOUN].size())
-        continue;
+        break;
       int T = i + j;
       // number of conjuctions
       int curJ = min((int)grammar[CONJ].size(), T / 2);
       if (T - curJ > P)
-        continue;
+        break;
       // M number of commas
       int curM = min((int)grammar[NOUN].size() - i - 2 * j, C);
       if (j == 0)
