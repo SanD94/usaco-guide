@@ -23,6 +23,7 @@
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
 * ✅ [231A Team](https://codeforces.com/problemset/problem/231/A)
 * ✅ [546A Soldier and Bananas](https://codeforces.com/problemset/problem/546/A)
+* ✅ [GymA Maximum Distance](https://codeforces.com/gym/102951/problem/A)
 
 
 #### [USACO](https://usaco.org/index.php)
@@ -49,3 +50,23 @@
 * ✅ [Censoring](https://usaco.org/index.php?page=viewproblem2&cpid=526)
 * ✅ [Milk Measurement](https://usaco.org/index.php?page=viewproblem2&cpid=761)
 * ✅ [Stuck in a Rut](https://usaco.org/index.php?page=viewproblem2&cpid=1061)
+* ✅ [Milk Pails](https://usaco.org/index.php?page=viewproblem2&cpid=615)
+* ✅ [Diamond Collector](https://usaco.org/index.php?page=viewproblem2&cpid=639)
+* ✅ [Daisy Chains](https://usaco.org/index.php?page=viewproblem2&cpid=1060)
+* ✅ [Counting Liars](https://usaco.org/index.php?page=viewproblem2&cpid=1228)
+* ✅ [Cow Gymnastics](https://usaco.org/index.php?page=viewproblem2&cpid=963)
+* ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=736)
+* ✅ [Triangles](https://usaco.org/index.php?page=viewproblem2&cpid=1011)
+* ✅ [Lifeguards](https://usaco.org/index.php?page=viewproblem2&cpid=784)
+* ✅ [Why Did The Cow Cross The Road II](https://usaco.org/index.php?page=viewproblem2&cpid=712)
+* ✅ [Guess the Animal](https://usaco.org/index.php?page=viewproblem2&cpid=893)
+* ✅ [Load Balancing](https://usaco.org/index.php?page=viewproblem2&cpid=617)
+* ✅ [Sleeping in the Class](https://usaco.org/index.php?page=viewproblem2&cpid=1203)
+* ✅ [Contaminated Milk](https://usaco.org/index.php?page=viewproblem2&cpid=569)
+* ✅ [Cowntact Tracing](https://usaco.org/index.php?page=viewproblem2&cpid=1037)
+* ✅ [Bull in a China Shop](https://usaco.org/index.php?page=viewproblem2&cpid=640)
+* ✅ [Moo Language](https://usaco.org/index.php?page=viewproblem2&cpid=1324)
+
+##### Silver
+* ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
+* ✅ [Load Balancing](https://usaco.org/index.php?page=viewproblem2&cpid=619)
