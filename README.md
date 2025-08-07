@@ -20,6 +20,7 @@
 * ✅ [Palindrome Reorder](https://cses.fi/problemset/task/1755)
 * ✅ [Apple Division](https://cses.fi/problemset/task/1623)
 * ✅ [Creating Strings](https://cses.fi/problemset/task/1622)
+* ✅ [Chessboard and Queens](https://cses.fi/problemset/task/1624)
 
 #### [CodeForces](https://codeforces.com)
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
