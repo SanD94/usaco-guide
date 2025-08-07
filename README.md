@@ -18,6 +18,7 @@
 * ✅ [Trailing Zeros](https://cses.fi/problemset/task/1618)
 * ✅ [Coin Piles](https://cses.fi/problemset/task/1754)
 * ✅ [Palindrome Reorder](https://cses.fi/problemset/task/1755)
+* ✅ [Apple Division](https://cses.fi/problemset/task/1623)
 
 #### [CodeForces](https://codeforces.com)
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
