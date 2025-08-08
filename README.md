@@ -70,6 +70,7 @@
 * ✅ [Bull in a China Shop](https://usaco.org/index.php?page=viewproblem2&cpid=640)
 * ✅ [Moo Language](https://usaco.org/index.php?page=viewproblem2&cpid=1324)
 * ✅ [Air Cownditioning II](https://usaco.org/index.php?page=viewproblem2&cpid=1276)
+* ✅ [Livestock Lineup](https://usaco.org/index.php?page=viewproblem2&cpid=965)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
