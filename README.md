@@ -69,6 +69,7 @@
 * ✅ [Cowntact Tracing](https://usaco.org/index.php?page=viewproblem2&cpid=1037)
 * ✅ [Bull in a China Shop](https://usaco.org/index.php?page=viewproblem2&cpid=640)
 * ✅ [Moo Language](https://usaco.org/index.php?page=viewproblem2&cpid=1324)
+* ✅ [Air Cownditioning II](https://usaco.org/index.php?page=viewproblem2&cpid=1276)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
