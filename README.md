@@ -71,6 +71,7 @@
 * ✅ [Moo Language](https://usaco.org/index.php?page=viewproblem2&cpid=1324)
 * ✅ [Air Cownditioning II](https://usaco.org/index.php?page=viewproblem2&cpid=1276)
 * ✅ [Livestock Lineup](https://usaco.org/index.php?page=viewproblem2&cpid=965)
+* ✅ [Back and Forth](https://usaco.org/index.php?page=viewproblem2&cpid=857)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
