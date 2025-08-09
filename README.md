@@ -30,6 +30,7 @@
 * ✅ [231A Team](https://codeforces.com/problemset/problem/231/A)
 * ✅ [546A Soldier and Bananas](https://codeforces.com/problemset/problem/546/A)
 * ✅ [GymA Maximum Distance](https://codeforces.com/gym/102951/problem/A)
+* ✅ [581D Three Logos](https://codeforces.com/problemset/problem/581/D)
 
 
 #### [USACO](https://usaco.org/index.php)
