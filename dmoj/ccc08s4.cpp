@@ -11,61 +11,40 @@ vector<function<int(int, int)>> ops = {plus<int>(), minus<int>(),
 
 int res;
 
-void par_check(int idx, vector<int> s, vector<int> sops, vector<int> &deck, vector<int> &iops) {
-  if (idx == 3) {
-    while (sops.size()) {
-      int a, b, c, op;
-      b = s.back(), s.pop_back();
-      a = s.back(), s.pop_back();
-      op = sops.back(), sops.pop_back();
-      if (op == 3 && (b == 0 || a % b != 0)) return;
-      c = ops[op](a, b);
-      s.push_back(c);
+void exhaust(int idx, int lhs, int rhs, vector<int> &deck) {
+  int cur_res;
+  if (idx == 4) {
+    for (int i = 0; i < 4; i++) {
+      if (i == 3 && (rhs == 0 || lhs % rhs != 0)) continue;
+      cur_res = ops[i](lhs, rhs);
+      if (cur_res <= 24) res = max(res, cur_res);
     }
-    int cur_res = s[0];
-    if (cur_res <= 24) res = max(res, cur_res);
     return;
   }
-  // not do the calc add an operation
-  s.push_back(deck[idx + 1]);
-  sops.push_back(iops[idx]);
-  par_check(idx + 1, s, sops, deck, iops);
-  sops.pop_back();
-  s.pop_back();
-  
-  // do the calc and add the rest
-  int a, b, c, op;
-  b = s.back(), s.pop_back();
-  a = s.back(), s.pop_back();
-  op = sops.back(), sops.pop_back();
-  if (!(op == 3 && (b == 0 || a % b != 0))) {
-    c = ops[op](a,b);
-    s.push_back(c);
-    s.push_back(deck[idx + 1]);
-    sops.push_back(iops[idx]);
-    par_check(idx + 1, s, sops, deck, iops);
-  } 
-
+  // lhs op rhs, deck[idx]
+  for (int i = 0; i < 4; i++) {
+    if (i == 3 && (rhs == 0 || lhs % rhs != 0)) continue;
+    cur_res = ops[i](lhs, rhs);
+    exhaust(idx + 1, cur_res, deck[idx], deck);
+  }
+  // lhs, rhs op deck[idx]
+  for (int i = 0; i < 4; i++) {
+    if (i == 3 && (deck[idx] == 0 || rhs % deck[idx] != 0)) continue;
+    cur_res = ops[i](rhs, deck[idx]);
+    exhaust(idx + 1, lhs, cur_res, deck);
+  }
 }
 
-void par_check(vector<int> &deck, vector<int> &iops) {
-  vector<int> s, sops;
-  s.push_back(deck[0]);
-  s.push_back(deck[1]);
-  sops.push_back(iops[0]);
-  par_check(1, s, sops, deck, iops);
+void exhaust(vector<int> &deck) {
+  exhaust(2, deck[0], deck[1], deck);
 }
+
 
 int eval(vector<int> &deck) {
   sort(deck.begin(), deck.end());
   res = 0;
   do {
-    for (int i = 0; i < 4; i++)
-      for (int j = 0; j < 4; j++)
-        for (int k = 0; k < 4; k++) {
-          vector<int> iops {i, j, k};
-          par_check(deck, iops);
-        }
+    exhaust(deck);
   } while (next_permutation(deck.begin(), deck.end()));
   return res;
 }
