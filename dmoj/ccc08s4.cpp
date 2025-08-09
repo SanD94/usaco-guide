@@ -10,35 +10,62 @@ vector<function<int(int, int)>> ops = {plus<int>(), minus<int>(),
                                        multiplies<int>(), divides<int>()};
 
 int res;
-void par_check(vector<int> s, vector<int> iops) {
-  if (s.size() == 1) {
-    int cur_res = s.back();
-    if (cur_res <= 24)
-      res = max(res, cur_res);
+
+void par_check(int idx, vector<int> s, vector<int> sops, vector<int> &deck, vector<int> &iops) {
+  if (idx == 3) {
+    while (sops.size()) {
+      int a, b, c, op;
+      b = s.back(), s.pop_back();
+      a = s.back(), s.pop_back();
+      op = sops.back(), sops.pop_back();
+      if (op == 3 && (b == 0 || a % b != 0)) return;
+      c = ops[op](a, b);
+      s.push_back(c);
+    }
+    int cur_res = s[0];
+    if (cur_res <= 24) res = max(res, cur_res);
     return;
   }
-  while (s.size() > 1) {
-    // eval top two
-    int a, b, c, op;
-    b = s.back(), s.pop_back();
-    a = s.back(), s.pop_back();
-    op = iops.back(), iops.pop_back();
-    if (op == 3 && (b == 0 || a % b != 0))
-      return;
-    c = ops[op](a, b);
+  // not do the calc add an operation
+  s.push_back(deck[idx + 1]);
+  sops.push_back(iops[idx]);
+  par_check(idx + 1, s, sops, deck, iops);
+  sops.pop_back();
+  s.pop_back();
+  
+  // do the calc and add the rest
+  int a, b, c, op;
+  b = s.back(), s.pop_back();
+  a = s.back(), s.pop_back();
+  op = sops.back(), sops.pop_back();
+  if (!(op == 3 && (b == 0 || a % b != 0))) {
+    c = ops[op](a,b);
     s.push_back(c);
-    par_check(s, iops);
-    s.pop_back();
-  }
+    s.push_back(deck[idx + 1]);
+    sops.push_back(iops[idx]);
+    par_check(idx + 1, s, sops, deck, iops);
+  } 
+
+}
+
+void par_check(vector<int> &deck, vector<int> &iops) {
+  vector<int> s, sops;
+  s.push_back(deck[0]);
+  s.push_back(deck[1]);
+  sops.push_back(iops[0]);
+  par_check(1, s, sops, deck, iops);
 }
 
 int eval(vector<int> &deck) {
   sort(deck.begin(), deck.end());
+  res = 0;
   do {
     for (int i = 0; i < 4; i++)
       for (int j = 0; j < 4; j++)
-        for (int k = 0; k < 4; k++)
-          par_check(deck, vector<int>{i, j, k});
+        for (int k = 0; k < 4; k++) {
+          vector<int> iops {i, j, k};
+          par_check(deck, iops);
+        }
   } while (next_permutation(deck.begin(), deck.end()));
   return res;
 }

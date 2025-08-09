@@ -5,6 +5,9 @@
 #### [Kattis](https://open.kattis.com/)
 * ✅ [Basketball One-on-One](https://open.kattis.com/problems/basketballoneonone)
 
+#### [DMOJ](https://dmoj.ca/)
+* ✅ [CCC '08 S4 - Twenty-four](https://dmoj.ca/problem/ccc08s4)
+
 #### [CSES](https://cses.fi)
 * ✅ [Weird Algorithm](https://cses.fi/problemset/task/1068)
 * ✅ [Missing Number](https://cses.fi/problemset/task/1083)
