@@ -1,5 +1,6 @@
 // C++ 17
 // from codeforces.com
+#include <algorithm>
 #include <iostream>
 #include <map>
 #include <numeric>
@@ -9,6 +10,61 @@ using namespace std;
 
 #define DEBUG(name) print(#name, name)
 #define DEBUGN(name) print(#name, name, true)
+
+// special tips & tricks
+// https://codeforces.com/blog/entry/74684
+#define all(x) (x).begin(), (x).end()
+template<typename T>
+T nxt() {
+  T x;
+  cin >> T;
+  return x;
+}
+
+bool pred(int x) {
+  return x % 2;
+}
+
+void tips_trick() {
+  vector<int> vec;
+  sort(all(vec));
+  sort(1 + all(vec)); // for convex hull
+  // unique usage
+  sort(all(vec));
+  
+  // fill and iota
+  fill(all(vec), 1); // fill with 1
+  iota(all(vec), 0); // 0 to n (exclusive)
+  generate(all(vec), rand);
+  // _n analogs exist.
+  int k;
+  rotate(vec.begin(), vec.begin() + k, vec.end());
+  // segment tree merge
+  int n;
+  vector<vector<int>> segment_tree;
+  merge(all(segment_tree[2*n]), all(segment_tree[2*n + 1]), begin(segment_tree[n]));
+  
+  set<int> S(all(vec));
+  int key;
+  
+  if (S.count(key)){}
+  if (binary_search(all(vec), key)){}
+  int pos = partition_point(all(vec), [](int x) { return x % 2; }) - begin(vec);
+  
+  // binary rep
+  cout << bitset<20>(n) << endl;
+  
+  auto f = [&]() -> int { return 10; };
+  auto is_good = [&](int x) -> bool { return true; };
+  auto use_somehow = [&](int x) { cout << "done" << endl; };
+  
+  if (int x = f(); is_good(x)) {
+    use_somehow(x);
+}
+}
+
+// sort(all(x));
+
 
 // FOLD EXPRESSIONS
 // templates read and write
