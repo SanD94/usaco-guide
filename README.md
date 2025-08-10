@@ -5,6 +5,9 @@
 #### [Kattis](https://open.kattis.com/)
 * ✅ [Basketball One-on-One](https://open.kattis.com/problems/basketballoneonone)
 
+#### [DMOJ](https://dmoj.ca/)
+* ✅ [CCC '08 S4 - Twenty-four](https://dmoj.ca/problem/ccc08s4)
+
 #### [CSES](https://cses.fi)
 * ✅ [Weird Algorithm](https://cses.fi/problemset/task/1068)
 * ✅ [Missing Number](https://cses.fi/problemset/task/1083)
@@ -18,12 +21,16 @@
 * ✅ [Trailing Zeros](https://cses.fi/problemset/task/1618)
 * ✅ [Coin Piles](https://cses.fi/problemset/task/1754)
 * ✅ [Palindrome Reorder](https://cses.fi/problemset/task/1755)
+* ✅ [Apple Division](https://cses.fi/problemset/task/1623)
+* ✅ [Creating Strings](https://cses.fi/problemset/task/1622)
+* ✅ [Chessboard and Queens](https://cses.fi/problemset/task/1624)
 
 #### [CodeForces](https://codeforces.com)
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
 * ✅ [231A Team](https://codeforces.com/problemset/problem/231/A)
 * ✅ [546A Soldier and Bananas](https://codeforces.com/problemset/problem/546/A)
 * ✅ [GymA Maximum Distance](https://codeforces.com/gym/102951/problem/A)
+* ✅ [581D Three Logos](https://codeforces.com/problemset/problem/581/D)
 
 
 #### [USACO](https://usaco.org/index.php)
@@ -66,6 +73,9 @@
 * ✅ [Cowntact Tracing](https://usaco.org/index.php?page=viewproblem2&cpid=1037)
 * ✅ [Bull in a China Shop](https://usaco.org/index.php?page=viewproblem2&cpid=640)
 * ✅ [Moo Language](https://usaco.org/index.php?page=viewproblem2&cpid=1324)
+* ✅ [Air Cownditioning II](https://usaco.org/index.php?page=viewproblem2&cpid=1276)
+* ✅ [Livestock Lineup](https://usaco.org/index.php?page=viewproblem2&cpid=965)
+* ✅ [Back and Forth](https://usaco.org/index.php?page=viewproblem2&cpid=857)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
