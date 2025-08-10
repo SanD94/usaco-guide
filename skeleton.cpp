@@ -31,6 +31,7 @@ void tips_trick() {
   sort(1 + all(vec)); // for convex hull
   // unique usage
   sort(all(vec));
+  vec.resize(unique(all(vec)) - begin(vec));
   
   // fill and iota
   fill(all(vec), 1); // fill with 1
