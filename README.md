@@ -24,6 +24,7 @@
 * ✅ [Apple Division](https://cses.fi/problemset/task/1623)
 * ✅ [Creating Strings](https://cses.fi/problemset/task/1622)
 * ✅ [Chessboard and Queens](https://cses.fi/problemset/task/1624)
+* ✅ [Distinct Numbers](https://cses.fi/problemset/task/1621)
 
 #### [CodeForces](https://codeforces.com)
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
@@ -31,6 +32,9 @@
 * ✅ [546A Soldier and Bananas](https://codeforces.com/problemset/problem/546/A)
 * ✅ [GymA Maximum Distance](https://codeforces.com/gym/102951/problem/A)
 * ✅ [581D Three Logos](https://codeforces.com/problemset/problem/581/D)
+* ✅ [1808B Playing in a Casino](https://codeforces.com/contest/1808/problem/B)
+* ✅ [863B Kayaking](https://codeforces.com/contest/863/problem/B)
+* ✅ [GymH Permutator](https://codeforces.com/gym/104520/problem/H)
 
 
 #### [USACO](https://usaco.org/index.php)
@@ -76,6 +80,9 @@
 * ✅ [Air Cownditioning II](https://usaco.org/index.php?page=viewproblem2&cpid=1276)
 * ✅ [Livestock Lineup](https://usaco.org/index.php?page=viewproblem2&cpid=965)
 * ✅ [Back and Forth](https://usaco.org/index.php?page=viewproblem2&cpid=857)
+* ✅ [Why Did the Cow Cross the Road III](https://usaco.org/index.php?page=viewproblem2&cpid=713)
+* ✅ [Cow College](https://usaco.org/index.php?page=viewproblem2&cpid=1251)
+* ✅ [Angry Cows](https://usaco.org/index.php?page=viewproblem2&cpid=592)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
