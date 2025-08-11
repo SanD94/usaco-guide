@@ -1,7 +1,8 @@
-// https://cses.fi/problemset/task/1621
+// https://codeforces.com/contest/1808/problem/B
 #include <algorithm>
 #include <iostream>
 #include <iterator>
+#include <vector>
 using namespace std;
 
 #define all(x) begin((x)), end((x))
@@ -22,7 +23,7 @@ int main(int argc, char const *argv[]) {
       sort(all(deck[i]));
     for (int i = 0; i < M; i++)
       for (int j = 0; j < N - 1; j++)
-        res += (deck[i][j + 1] - deck[i][j]) * (N - 1);
+        res += (deck[i][j + 1] - deck[i][j]) * (j + 1) * (N - j - 1);
 
     cout << res << endl;
   }
