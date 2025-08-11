@@ -25,6 +25,7 @@
 * ✅ [Creating Strings](https://cses.fi/problemset/task/1622)
 * ✅ [Chessboard and Queens](https://cses.fi/problemset/task/1624)
 * ✅ [Distinct Numbers](https://cses.fi/problemset/task/1621)
+* ✅ [Sum of Two Values](https://cses.fi/problemset/task/1640)
 
 #### [CodeForces](https://codeforces.com)
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
