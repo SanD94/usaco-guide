@@ -33,6 +33,7 @@
 * ✅ [GymA Maximum Distance](https://codeforces.com/gym/102951/problem/A)
 * ✅ [581D Three Logos](https://codeforces.com/problemset/problem/581/D)
 * ✅ [1808B Playing in a Casino](https://codeforces.com/contest/1808/problem/B)
+* ✅ [863B Kayaking](https://codeforces.com/contest/863/problem/B)
 
 
 #### [USACO](https://usaco.org/index.php)
