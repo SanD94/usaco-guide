@@ -34,6 +34,7 @@
 * ✅ [581D Three Logos](https://codeforces.com/problemset/problem/581/D)
 * ✅ [1808B Playing in a Casino](https://codeforces.com/contest/1808/problem/B)
 * ✅ [863B Kayaking](https://codeforces.com/contest/863/problem/B)
+* ✅ [GymH Permutator](https://codeforces.com/gym/104520/problem/H)
 
 
 #### [USACO](https://usaco.org/index.php)
