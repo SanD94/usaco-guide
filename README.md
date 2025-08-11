@@ -79,6 +79,7 @@
 * ✅ [Air Cownditioning II](https://usaco.org/index.php?page=viewproblem2&cpid=1276)
 * ✅ [Livestock Lineup](https://usaco.org/index.php?page=viewproblem2&cpid=965)
 * ✅ [Back and Forth](https://usaco.org/index.php?page=viewproblem2&cpid=857)
+* ✅ [Why Did the Cow Cross the Road III](https://usaco.org/index.php?page=viewproblem2&cpid=713)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
