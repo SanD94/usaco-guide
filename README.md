@@ -25,6 +25,7 @@
 * ✅ [Creating Strings](https://cses.fi/problemset/task/1622)
 * ✅ [Chessboard and Queens](https://cses.fi/problemset/task/1624)
 * ✅ [Distinct Numbers](https://cses.fi/problemset/task/1621)
+* ✅ [Sum of Two Values](https://cses.fi/problemset/task/1640)
 
 #### [CodeForces](https://codeforces.com)
 * ✅ [4A Watermelon](https://codeforces.com/problemset/problem/4/A)
@@ -35,6 +36,9 @@
 * ✅ [1808B Playing in a Casino](https://codeforces.com/contest/1808/problem/B)
 * ✅ [863B Kayaking](https://codeforces.com/contest/863/problem/B)
 * ✅ [GymH Permutator](https://codeforces.com/gym/104520/problem/H)
+* ✅ [831C July Marks](https://codeforces.com/contest/831/problem/C)
+* ✅ [1209G1 Into Blocks](https://codeforces.com/contest/1209/problem/G1)
+
 
 
 #### [USACO](https://usaco.org/index.php)
@@ -83,7 +87,18 @@
 * ✅ [Why Did the Cow Cross the Road III](https://usaco.org/index.php?page=viewproblem2&cpid=713)
 * ✅ [Cow College](https://usaco.org/index.php?page=viewproblem2&cpid=1251)
 * ✅ [Angry Cows](https://usaco.org/index.php?page=viewproblem2&cpid=592)
+* ✅ [Where Am I?](https://usaco.org/index.php?page=viewproblem2&cpid=964)
+* ✅ [Year of the Cow](https://usaco.org/index.php?page=viewproblem2&cpid=1107)
+* ✅ [Don't be Last!](https://usaco.org/index.php?page=viewproblem2&cpid=687)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
 * ✅ [Load Balancing](https://usaco.org/index.php?page=viewproblem2&cpid=619)
+* ✅ [Cities and States](https://usaco.org/index.php?page=viewproblem2&cpid=667)
+
+
+#### [Yosupo](https://judge.yosupo.jp)
+* ✅ [Associative Array](https://judge.yosupo.jp/problem/associative_array)
+
+#### [AtCoder](https://atcoder.jp)
+* ✅ [ABC202 Made Up](https://atcoder.jp/contests/abc202/tasks/abc202_c)
