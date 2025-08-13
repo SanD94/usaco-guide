@@ -37,6 +37,7 @@
 * ✅ [863B Kayaking](https://codeforces.com/contest/863/problem/B)
 * ✅ [GymH Permutator](https://codeforces.com/gym/104520/problem/H)
 * ✅ [831C July Marks](https://codeforces.com/contest/831/problem/C)
+* ✅ [1209G1 Into Blocks](https://codeforces.com/contest/1209/problem/G1)
 
 
 
