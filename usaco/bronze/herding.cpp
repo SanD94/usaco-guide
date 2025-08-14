@@ -1,4 +1,4 @@
-// https://usaco.org/index.php?page=viewproblem2&cpid=832
+// https://usaco.org/index.php?page=viewproblem2&cpid=915
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -20,11 +20,9 @@ int main(int argc, char const *argv[]) {
   int mn = min(v[1] - v[0], v[2] - v[1]);
   int mx = max(v[1] - v[0], v[2] - v[1]);
   int mn_res = 2, mx_res = mx - 1;
-  if (mn < 2)
-    mn_res = 1;
-  if (mx == 1)
-    mn_res = 0;
+  if (mn == 2) mn_res = 1;
+  if (mx == 1) mn_res = 0; 
 
-  cout << mn_res << " " << mx_res << endl;
+  cout << mn_res << endl << mx_res << endl;
   return 0;
 }
