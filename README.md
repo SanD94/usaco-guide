@@ -90,6 +90,7 @@
 * ✅ [Where Am I?](https://usaco.org/index.php?page=viewproblem2&cpid=964)
 * ✅ [Year of the Cow](https://usaco.org/index.php?page=viewproblem2&cpid=1107)
 * ✅ [Don't be Last!](https://usaco.org/index.php?page=viewproblem2&cpid=687)
+* ✅ [Milking Order](https://usaco.org/index.php?page=viewproblem2&cpid=832)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
