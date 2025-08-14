@@ -92,6 +92,7 @@
 * ✅ [Don't be Last!](https://usaco.org/index.php?page=viewproblem2&cpid=687)
 * ✅ [Milking Order](https://usaco.org/index.php?page=viewproblem2&cpid=832)
 * ✅ [Sleepy Cow Herding](https://usaco.org/index.php?page=viewproblem2&cpid=915)
+* ✅ [Sleepy Cow Sorting](https://usaco.org/index.php?page=viewproblem2&cpid=892)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
