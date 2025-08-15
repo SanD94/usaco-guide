@@ -22,23 +22,15 @@ int main(int argc, char const *argv[]) {
   if (breaks[0] > 0) corrupt = true;
   breaks[0] = 0;
 
-  int mn_break = 0, mx_break = 0;
-  for (int i = 0; i < N; i++) {
-    if (breaks[i] > 0) {
-      if (i - breaks[i] < 0) corrupt = true;
-      else {
-        for (int j = 0; j <= breaks[i]; j++) {
-          // -1 -1 2 -1 4
-          if (breaks[i-j] == -1 || breaks[i-j] == breaks[i] - j)
-            breaks[i - j] = breaks[i] - j;
-          else corrupt = true;
-        }
-      }
-    }
-  }
-  for(int i = 0; i < N; i++) {
+  int mn_break = 0, mx_break = 0, t = -1;
+  for (int i = N-1; i >= 0; i--) {
+    if (t != -1 && breaks[i] != -1 && breaks[i] != t)
+      corrupt = true;
+    if (t == -1) t = breaks[i];
+    if (breaks[i] == -1) breaks[i] = t;
     if (breaks[i] == 0) mn_break++;
     if (breaks[i] == -1) mx_break++;
+    if (t > -1) t--;
   }
   if (corrupt) cout << -1 << endl;
   else cout << mn_break << " " << mn_break + mx_break << endl;
