@@ -95,6 +95,7 @@
 * ✅ [Sleepy Cow Sorting](https://usaco.org/index.php?page=viewproblem2&cpid=892)
 * ✅ [Taming the Herd](https://usaco.org/index.php?page=viewproblem2&cpid=809)
 * ✅ [Modern Art](https://usaco.org/index.php?page=viewproblem2&cpid=737)
+* ✅ [Hoofball](https://usaco.org/index.php?page=viewproblem2&cpid=808)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
