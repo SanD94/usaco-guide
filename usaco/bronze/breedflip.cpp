@@ -18,13 +18,11 @@ int main(int argc, char const *argv[]) {
   cin >> A >> B;
   
   int res = 0;
+  bool match = true;
+  // count [match, mismatch] pairs
   for (int i = 0; i < A.length(); i++) {
-      bool found = false;
-      while (i < A.length() && A[i] != B[i]) { found = true; i++; }
-      if (found) {
-        res ++;
-        i --;
-      }
+    if (match && (A[i] != B[i])) res++;
+    match = A[i] == B[i];
   }
   cout << res << endl;
   return 0;
