@@ -97,6 +97,7 @@
 * ✅ [Modern Art](https://usaco.org/index.php?page=viewproblem2&cpid=737)
 * ✅ [Hoofball](https://usaco.org/index.php?page=viewproblem2&cpid=808)
 * ✅ [Mad Scientist](https://usaco.org/index.php?page=viewproblem2&cpid=1012)
+* ✅ [Watching MooLoo](https://usaco.org/index.php?page=viewproblem2&cpid=1301)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
