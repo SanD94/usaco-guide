@@ -11,21 +11,17 @@ using lli = long long int;
 int main(int argc, char const *argv[]) {
   int N, K;
   cin >> N >> K;
-  lli a, res = 0, t0, t1;
+  lli res = 0, t0, t1;
 
-  cin >> a;
-  res += K;
-  t0 = t1 = a;
+  cin >> t1;
+  res += K + 1;
+  t0 = t1;
 
   for (int i = 0; i < N - 1; i++)  {
-    cin >> a;
-    if (t1 + K < a) { // finish old and start new sub
-      res += (t1 - t0) + 1 + K;
-      t0 = a;
-    }
-    t1 = a;
+    cin >> t1;
+    res += (t0 + K < t1) ? (1 + K) : (t1 - t0); // new sub or continue
+    t0 = t1;
   }
-  res += (t1 - t0) + 1;
   
   cout << res << endl;
   
