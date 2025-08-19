@@ -100,6 +100,7 @@
 * ✅ [Watching MooLoo](https://usaco.org/index.php?page=viewproblem2&cpid=1301)
 * ✅ [Cow Tipping](https://usaco.org/index.php?page=viewproblem2&cpid=689)
 * ✅ [Even More Odd Photos](https://usaco.org/index.php?page=viewproblem2&cpid=1084)
+* ✅ [Out of Place](https://usaco.org/index.php?page=viewproblem2&cpid=785)
 
 ##### Silver
 * ✅ [Bovine Genomics](https://usaco.org/index.php?page=viewproblem2&cpid=739)
