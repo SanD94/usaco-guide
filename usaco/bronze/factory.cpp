@@ -11,25 +11,20 @@ void set_io(string s) {
 int main(int argc, char const *argv[]) {
   set_io("factory");
   int N;
-  vector<int> child(101, -1);
-  vector<int> cnt(101, 0);
+  vector<int> out(101, 0);
   cin >> N;
   int a, b;
   for (int i = 0; i < N - 1; i++) {
     cin >> a >> b;
-    child[a] = b;
+    out[a]++;
   }
+  vector<int> res;
   for (int i = 1; i <= N; i++) {
-    int cur = i;
-    while (child[cur] != -1)
-      cur = child[cur];
-    cnt[cur]++;
+    if (out[i] == 0)
+      res.emplace_back(i);
   }
+  int idx = res.size() == 1 ? res[0] : -1;
 
-  int res = -1;
-  for (int i = 1; i <= N; i++)
-    if (cnt[i] == N)
-      res = i;
-  cout << res << endl;
+  cout << idx << endl;
   return 0;
 }
