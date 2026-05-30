@@ -15,6 +15,8 @@ bool go(int N, int K) {
     vector<vector<int>> same_prefix(N + 1, vector<int>(N + 1));
     vector<vector<int>> min_prints(N, vector<int>(N, INF));
 
+    // prefix calculate for block analysis 
+    // when repeat x prefix would calculate easily
     for (int i = N - 1; i >= 0; i--) {
         for (int j = N - 1; j >= 0; j--) {
             if (target[i] == target[j]) {
@@ -23,6 +25,7 @@ bool go(int N, int K) {
         }
     }
 
+    // bottom-up solution as one character can be printed easily
     for (int len = 1; len <= N; len++) {
         for (int b = 0; b + len <= N; b++) {
             int e = b + len - 1;
