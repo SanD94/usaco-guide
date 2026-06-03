@@ -11,32 +11,31 @@ int N, A, B;
 vector<string> stars;
 
 int eval(vector<string> &stars) {
+    vector<vector<bool>> has_star(N, vector<bool>(N));
     int res = 0;
+
+    auto add_star = [&](int i, int j) {
+        if (!has_star[i][j]) {
+            has_star[i][j] = true;
+            res++;
+        }
+    };
+
     for (int i = 0; i < N; i++)
-        for (int j = 0; j < N; j++)
-            if (stars[i][j] != 'W') res++;
-    if (A == 0 && B == 0)
-        return res;
-    for(int i = N-1; i >= 0; i--)
-        for (int j = N-1; j >= 0; j--) {
+        for(int j = 0; j < N; j++) {
             int pi = i - B;
             int pj = j - A;
-            if (stars[i][j] == 'W') continue;
+            bool is_allowed = 0 <= pi && 0 <= pj;
             if (stars[i][j] == 'B') {
-                if (pi < 0 || pj < 0 || stars[pi][pj] == 'W')
-                    return -1;
+                if (!is_allowed || stars[pi][pj] == 'W') return -1;
+                add_star(i, j);
+                add_star(pi, pj);
             }
             if (stars[i][j] == 'G') {
-                if (pi < 0 || pj < 0 || stars[pi][pj] == 'W')
-                    continue;
-                res--;
-            }
-            if (stars[pi][pj] == 'G') {
-                stars[pi][pj] = 'W';
+                if (is_allowed && has_star[pi][pj]) continue;
+                add_star(i,j);
             }
         }
-
-
     return res;
 }
 
