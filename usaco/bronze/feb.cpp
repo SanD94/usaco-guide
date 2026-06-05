@@ -17,11 +17,15 @@ void eval() {
         cnt++;
         cur++;
     }
-    if (cnt > 0) get<1>(res) += cnt;
-    if (cnt > 0 && cur == N) {
+    if (cnt > 0) {
+        get<1>(res) += cnt;
         get<2>(res) = 1;
+    }
+    if (cur == N) {
+        get<1>(res)--;
         return;
     }
+    
     int begin = cur;
     // end
     cur = N-1;
@@ -30,21 +34,14 @@ void eval() {
         cnt++;
         cur--;
     }
-    if (cnt > 0) get<1>(res) += cnt;
     if (cnt > 0) {
+        get<1>(res) += cnt;
         get<2>(res) = 1;
     }
     int end = cur;
     // mid
     char ch = S[begin];
     for (int i = begin+1; i <= end; i++) {
-        if (ch == S[i]) {
-            get<0>(res)++;
-            get<1>(res)++;
-            get<2>(res) = 1;
-            ch = S[i];
-            continue;
-        }
         int cnt = 0;
         while (S[i] == 'F') {
             cnt++;
@@ -65,7 +62,6 @@ void eval() {
                 get<1>(res) += cnt;
             }
         }
-        get<2>(res) = min(get<2>(res), 2);
         ch = S[i];
     }
 }
@@ -75,8 +71,8 @@ int main(int argc, char const *argv[]) {
     cin >> S;
     eval();
     auto [bgn, last, inc] = res;
-    cout << (last-bgn)/inc+1 << endl;
 
+    cout << (last-bgn)/inc+1 << endl;
     for (int i = bgn; i <= last; i += inc)
         cout << i << endl;
 
