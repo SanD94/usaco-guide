@@ -14,6 +14,7 @@ from pathlib import Path
 
 
 LOCAL_INCLUDE = re.compile(r'^(\s*)#\s*include\s+"([^"]+)"\s*(?://.*)?$')
+ROOT = Path(__file__).resolve().parent
 
 
 def display(path: Path) -> str:
@@ -21,6 +22,13 @@ def display(path: Path) -> str:
         return str(path.relative_to(Path.cwd()))
     except ValueError:
         return str(path)
+
+
+def resolve_include(base: Path, name: str) -> Path:
+    for candidate in (base / name, ROOT / name):
+        if candidate.exists():
+            return candidate.resolve()
+    raise SystemExit(f"local include not found: {name} from {display(base)}")
 
 
 def bundle(path: Path, seen: set[Path], stack: list[Path]) -> list[str]:
@@ -43,7 +51,7 @@ def bundle(path: Path, seen: set[Path], stack: list[Path]) -> list[str]:
 
         match = LOCAL_INCLUDE.match(line)
         if match:
-            header = (path.parent / match.group(2)).resolve()
+            header = resolve_include(path.parent, match.group(2))
             out.append(f"// begin {display(header)}")
             out.extend(bundle(header, seen, stack))
             out.append(f"// end {display(header)}")

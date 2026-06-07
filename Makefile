@@ -6,7 +6,7 @@ OUTPUT ?= output
 
 PYTHON ?= python3
 CXX := g++
-CXXFLAGS ?= -std=c++17 -Wall -Wextra -pedantic
+CXXFLAGS ?= -std=c++17 -I. -Wall -Wextra -pedantic
 
 .PHONY: all bundle build run check clean help
 

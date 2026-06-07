@@ -60,3 +60,4 @@ output
 *.out
 sol
 sol.cpp
+compile_flags.txt
