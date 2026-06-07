@@ -1,81 +1,61 @@
 // https://usaco.org/index.php?page=viewproblem2&cpid=1323
-#include<iostream>
-#include<tuple>
+#include <iostream>
+#include <iterator>
+#include <numeric>
+#include <string>
+#include <vector>
+#include "../../query.hpp"
 using namespace std;
 
 int N;
 string S;
-tuple<int,int,int> res;
 
 
 void eval() {
-    int cur = 0;
-    int cnt = 0;
-    // begin
-    get<2>(res) = 2;
-    while (S[cur] == 'F' && cur < N) {
-        cnt++;
-        cur++;
+    vector<int> indices(N);
+    iota(indices.begin(), indices.end(), 0);
+
+    // check full F
+    // if full add something in the beginning
+    if (query::from(S) | query::all_of([](char c) { return c == 'F'; })) {
+        S[0] = 'E';
     }
-    if (cnt > 0) {
-        get<1>(res) += cnt;
-        get<2>(res) = 1;
+
+    auto pos = query::from(indices)
+        | query::filter([](int i) { return S[i] != 'F'; })
+        | query::execute();
+
+
+    // count beginning and end stuff
+    int edge = pos.front() + (N - 1 - pos.back());
+
+    // (a,b) -> parity and equality check
+    int mn = 0, mx = 0;
+    for (int i = 0; i + 1 < (int)pos.size(); ++i) {
+        int a = pos[i], b = pos[i + 1];
+        bool different = S[a] != S[b];
+        mn += ((b - a) & 1) ^ different;
+        mx += (b - a) - different;
     }
-    if (cur == N) {
-        get<1>(res)--;
-        return;
-    }
-    
-    int begin = cur;
-    // end
-    cur = N-1;
-    cnt = 0;
-    while (S[cur] == 'F' && cur >= 0) {
-        cnt++;
-        cur--;
-    }
-    if (cnt > 0) {
-        get<1>(res) += cnt;
-        get<2>(res) = 1;
-    }
-    int end = cur;
-    // mid
-    char ch = S[begin];
-    for (int i = begin+1; i <= end; i++) {
-        int cnt = 0;
-        while (S[i] == 'F') {
-            cnt++;
-            i++;
-        }
-        if (cnt % 2 == 0) {
-            if (S[i] == ch) {
-                get<0>(res) += 1;
-                get<1>(res) += cnt + 1;
-            } else {
-                get<1>(res) += cnt;
-            }
-        } else {
-            if (S[i] == ch) {
-                get<1>(res) += cnt + 1;
-            } else {
-                get<0>(res) += 1;
-                get<1>(res) += cnt;
-            }
-        }
-        ch = S[i];
-    }
+
+    mx += edge;
+
+    // if begining then inc = 1 else 2
+    int inc = edge > 0 ? 1 : 2;
+
+    // go with mn-max by inc
+    vector<int> levels;
+    for (int level = mn; level <= mx; level += inc) levels.push_back(level);
+
+    cout << levels.size() << '\n';
+    query::from(levels) | query::copy(ostream_iterator<int>(cout, "\n"));
 }
 
-int main(int argc, char const *argv[]) {
+int main() {
     cin >> N;
     cin >> S;
     eval();
-    auto [bgn, last, inc] = res;
 
-    cout << (last-bgn)/inc+1 << endl;
-    for (int i = bgn; i <= last; i += inc)
-        cout << i << endl;
 
     return 0;
 }
-
