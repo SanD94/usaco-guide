@@ -59,3 +59,4 @@ output
 *.in
 *.out
 sol
+sol.cpp
