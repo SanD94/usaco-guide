@@ -11,6 +11,14 @@
 
 namespace query {
 
+/// Small lazy range pipeline helpers.
+///
+/// Start with `from(...)`, append transform operations with `|`, and finish with
+/// a terminal operation such as `execute()`, `copy(...)`, or `reduce(...)`.
+///
+/// Example:
+/// `auto odds = query::from(v) | query::filter(pred) | query::execute();`
+
 namespace detail {
 
 struct transform_tag {};
@@ -258,39 +266,54 @@ private:
     std::tuple<Ops...> ops_;
 };
 
+/// Start a pipeline from a range, storing the range by value.
+/// Example: `query::from(v) | query::execute()`
 template <typename Range>
 auto from(Range&& range) {
     using Source = typename std::decay<Range>::type;
     return pipeline<Source>(std::forward<Range>(range));
 }
 
+/// Start a pipeline from a range by reference.
+/// Example: `query::from_ref(v) | query::execute()`
 template <typename Range>
 auto from_ref(Range& range) {
     return pipeline<std::reference_wrapper<Range>>(std::ref(range));
 }
 
+/// Start a pipeline from an iterator/sentinel pair.
+/// Example: `query::from(v.begin(), v.end()) | query::execute()`
 template <typename It, typename End>
 auto from(It first, End last) {
     return pipeline<detail::iterator_range<It, End>>(
         detail::iterator_range<It, End>{std::move(first), std::move(last)});
 }
 
+/// Start a pipeline from the first `n` elements beginning at `first`.
+/// Example: `query::from_n(v.begin(), 3) | query::execute()`
 template <typename It>
 auto from_n(It first, std::size_t n) {
     return pipeline<detail::counted_range<It>>(
         detail::counted_range<It>{std::move(first), n});
 }
 
+/// Transform each pipeline element with `f`.
+///
+/// Example: `query::from(v) | query::map([](int x) { return x * 2; })`
 template <typename F>
 auto map(F f) {
     return map_op<typename std::decay<F>::type>{{}, std::move(f)};
 }
 
+/// Keep only elements for which `pred(element)` is true.
+/// Example: `query::from(v) | query::filter([](int x) { return x % 2; })`
 template <typename Pred>
 auto filter(Pred pred) {
     return filter_op<typename std::decay<Pred>::type>{{}, std::move(pred)};
 }
 
+/// Transform each element into a range and flatten all produced ranges.
+/// Example: `query::from(v) | query::flat_map(children)`
 template <typename F>
 auto flat_map(F f) {
     return flat_map_op<typename std::decay<F>::type>{{}, std::move(f)};
@@ -304,6 +327,10 @@ struct execute_op : detail::terminal_tag {
     }
 };
 
+/// Materialize the pipeline into `std::vector<output_value_type>` by default.
+///
+/// Pass `Out` to materialize into another container type with `push_back`.
+/// Example: `auto out = query::from(v) | query::execute();`
 template <typename Out = void>
 auto execute() {
     return execute_op<Out>{};
@@ -323,6 +350,8 @@ struct copy_op : detail::terminal_tag {
     }
 };
 
+/// Copy every pipeline element to an output iterator and return the final iterator.
+/// Example: `query::from(v) | query::copy(back_inserter(out))`
 template <typename OutIt>
 auto copy(OutIt out) {
     return copy_op<OutIt>{{}, std::move(out)};
@@ -347,6 +376,8 @@ struct copy_n_op : detail::terminal_tag {
     }
 };
 
+/// Copy at most `n` pipeline elements to an output iterator.
+/// Example: `query::from(v) | query::copy_n(3, back_inserter(out))`
 template <typename OutIt>
 auto copy_n(std::size_t n, OutIt out) {
     return copy_n_op<OutIt>{{}, n, std::move(out)};
@@ -368,6 +399,8 @@ struct reduce_op : detail::terminal_tag {
     }
 };
 
+/// Fold all pipeline elements into `init` using `op(acc, element)`.
+/// Example: `query::from(v) | query::reduce(0, plus<int>{})`
 template <typename T, typename BinOp>
 auto reduce(T init, BinOp op) {
     return reduce_op<T, typename std::decay<BinOp>::type>{{}, std::move(init), std::move(op)};
@@ -391,6 +424,8 @@ struct inclusive_scan_op : detail::terminal_tag {
     }
 };
 
+/// Return all running accumulator values after applying each element.
+/// Example: `query::from(v) | query::inclusive_scan(0, plus<int>{})`
 template <typename T, typename BinOp>
 auto inclusive_scan(T init, BinOp op) {
     return inclusive_scan_op<T, typename std::decay<BinOp>::type>{{}, std::move(init), std::move(op)};
@@ -414,6 +449,8 @@ struct exclusive_scan_op : detail::terminal_tag {
     }
 };
 
+/// Return running accumulator values before applying each element.
+/// Example: `query::from(v) | query::exclusive_scan(0, plus<int>{})`
 template <typename T, typename BinOp>
 auto exclusive_scan(T init, BinOp op) {
     return exclusive_scan_op<T, typename std::decay<BinOp>::type>{{}, std::move(init), std::move(op)};
@@ -437,6 +474,8 @@ struct any_of_op : detail::terminal_tag {
     }
 };
 
+/// Return true if any pipeline element satisfies `pred`.
+/// Example: `query::from(v) | query::any_of([](int x) { return x < 0; })`
 template <typename Pred>
 auto any_of(Pred pred) {
     return any_of_op<typename std::decay<Pred>::type>{{}, std::move(pred)};
@@ -460,6 +499,8 @@ struct all_of_op : detail::terminal_tag {
     }
 };
 
+/// Return true if every pipeline element satisfies `pred`.
+/// Example: `query::from(v) | query::all_of([](int x) { return x > 0; })`
 template <typename Pred>
 auto all_of(Pred pred) {
     return all_of_op<typename std::decay<Pred>::type>{{}, std::move(pred)};
@@ -483,6 +524,8 @@ struct none_of_op : detail::terminal_tag {
     }
 };
 
+/// Return true if no pipeline element satisfies `pred`.
+/// Example: `query::from(v) | query::none_of([](int x) { return x == 0; })`
 template <typename Pred>
 auto none_of(Pred pred) {
     return none_of_op<typename std::decay<Pred>::type>{{}, std::move(pred)};
@@ -505,6 +548,8 @@ struct group_by_op : detail::terminal_tag {
     }
 };
 
+/// Group elements into `unordered_map<key, vector<element>>` using `key_fn`.
+/// Example: `query::from(v) | query::group_by([](int x) { return x % 2; })`
 template <typename KeyFn>
 auto group_by(KeyFn key_fn) {
     return group_by_op<typename std::decay<KeyFn>::type>{{}, std::move(key_fn)};
@@ -530,6 +575,8 @@ struct zip_op : detail::terminal_tag {
     }
 };
 
+/// Pair pipeline elements with elements from `b` until either range ends.
+/// Example: `query::from(a) | query::zip(b)`
 template <typename RangeB>
 auto zip(RangeB&& b) {
     using Stored = typename std::decay<RangeB>::type;
@@ -558,6 +605,8 @@ struct zip_with_op : detail::terminal_tag {
     }
 };
 
+/// Combine pipeline elements with elements from `b` using `f(a, b)`.
+/// Example: `query::from(a) | query::zip_with(b, plus<int>{})`
 template <typename RangeB, typename F>
 auto zip_with(RangeB&& b, F f) {
     using Stored = typename std::decay<RangeB>::type;

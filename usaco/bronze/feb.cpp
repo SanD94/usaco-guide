@@ -4,7 +4,7 @@
 #include <numeric>
 #include <string>
 #include <vector>
-#include "query.hpp"
+#include "utils/query.hpp"
 using namespace std;
 
 int N;
