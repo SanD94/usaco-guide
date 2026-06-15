@@ -1,6 +1,7 @@
 // https://usaco.org/index.php?page=viewproblem2&cpid=783
+#include <algorithm>
+#include <array>
 #include <iostream>
-#include <vector>
 using namespace std;
 
 void set_io(string s) {
@@ -8,83 +9,76 @@ void set_io(string s) {
     freopen((s + ".out").c_str(), "w", stdout);
 }
 
-struct point {
-    int x, y;
-    friend istream &operator>>(istream &is, point &p) {
-        return is >> p.x >> p.y;
-    }
+enum Side {BOTTOM, RIGHT, TOP, LEFT};
+const array<Side, 4> sides = {BOTTOM, RIGHT, TOP, LEFT};
 
-    point operator+(const point &p) const {
-        return {x + p.x, y + p.y};
-    }
+Side cw(Side s) {
+    return sides[(s + 1) % sides.size()];
+}
 
-    point operator-(const point &p) const {
-        return {x - p.x, y - p.y};
-    }
-};
+Side ccw(Side s) {
+    return sides[(s + sides.size() - 1) % sides.size()];
+}
 
 struct rect {
-    point p1, p2;
+    array<int, 4> edge;
     
     friend istream &operator>>(istream &is, rect &r) {
-        return is >> r.p1 >> r.p2;
+        return is >> r.edge[LEFT] >> r.edge[BOTTOM]
+                  >> r.edge[RIGHT] >> r.edge[TOP];
     }
 
-    int area() {
-        auto [x, y] = p2 - p1;
-        if (x < 0 || y < 0) return 0;
-        return x * y;
+    int width() const {
+        return edge[RIGHT] - edge[LEFT];
+    }
+
+    int height() const {
+        return edge[TOP] - edge[BOTTOM];
+    }
+
+    int area() const {
+        return width() * height();
     }
 };
-
-int intersect(rect b, rect t) {
-    point bl = { max(b.p1.x, t.p1.x), max(b.p1.y, t.p1.y) }; 
-    point tr = { min(b.p2.x, t.p2.x), min(b.p2.y, t.p2.y) };
-    return rect{bl, tr}.area();
-}
-
-vector<point> get_dots(rect r) {
-    point bl = r.p1;
-    point br = point{r.p2.x, r.p1.y};
-    point tr = r.p2;
-    point tl = point{r.p1.x, r.p2.y};
-    vector<point> ps = { bl, br, tr, tl };
-    return ps;
-}
-
-bool ccw(point ref, point a, point b) {
-    point v0 = a - ref;
-    point v1 = b - ref;
-    int val = v0.x * v1.y - v0.y * v1.x;
-    return val > 0;
-}
-
-bool is_inside(point p, vector<point> polygon) {
-    int N = polygon.size();
-    for (int i = 0; i < N; i++) {
-        point cur = polygon[i];
-        point next = polygon[(i + 1) % N];
-        if (!ccw(cur, next, p)) return false;
-    }
-    return true;
-}
-
-
-
-int cnt_dot_inside(rect r, rect ref) {
-    int cnt  = 0;
-    auto ps = get_dots(r);
-    auto ref_ps = get_dots(ref);
-    for (const auto &p : ps) if (is_inside(p, ref_ps)) cnt++;
-    return cnt;
-}
 
 rect b0, b1;
 
+rect inter(const rect &a, const rect &b) {
+    rect res;
+    res.edge[LEFT] = max(a.edge[LEFT], b.edge[LEFT]);
+    res.edge[BOTTOM] = max(a.edge[BOTTOM], b.edge[BOTTOM]);
+    res.edge[RIGHT] = min(a.edge[RIGHT], b.edge[RIGHT]);
+    res.edge[TOP] = min(a.edge[TOP], b.edge[TOP]);
+
+    if (res.width() <= 0 || res.height() <= 0)
+        return {{{0, 0, 0, 0}}};
+    return res;
+}
+
+bool same_edge(const rect &a, const rect &b, Side s) {
+    return a.edge[s] == b.edge[s];
+}
+
+bool cover_side(const rect &a, const rect &b, Side s) {
+    return same_edge(a, b, s) &&
+           same_edge(a, b, cw(s)) &&
+           same_edge(a, b, ccw(s));
+}
+
+bool one_rect_left(const rect &orig, const rect &cov) {
+    for (Side s : sides) 
+        if (cover_side(cov, orig, s)) 
+            return true;
+    return false;
+}
+
 int eval() {
-    int cover = intersect(b0, b1);
-    int cnt = cnt_dot_inside(b0, b1); 
-    return b0.area() - (cover * (cnt >= 2));
+    rect cov = inter(b0, b1);
+    bool ok = one_rect_left(b0, cov);
+
+    // If the visible part is still one rectangle, tarp only that part.
+    // Otherwise, one rectangular tarp must still cover all of b0.
+    return b0.area() - cov.area() * ok;
 }
 
 int main() {
@@ -93,6 +87,3 @@ int main() {
     cout << eval() << endl;
     return 0;
 }
-
-
-
