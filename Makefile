@@ -1,4 +1,4 @@
-SRC ?= usaco/bronze/feb.cpp
+SRC ?= ./cf/1216C.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
@@ -12,13 +12,17 @@ CXXFLAGS ?= -std=c++17 -I. -Wall -Wextra -pedantic
 
 all: build
 
-bundle:
+bundle: $(SUBMISSION)
+
+$(SUBMISSION): $(SRC) bundle.py
 	$(PYTHON) bundle.py $(SRC) -o $(SUBMISSION)
 
-build: bundle
+build: $(OUT)
+
+$(OUT): $(SUBMISSION)
 	$(CXX) $(CXXFLAGS) $(SUBMISSION) -o $(OUT)
 
-run: build
+run: $(OUT)
 	./$(OUT) < $(INPUT) > $(OUTPUT)
 
 check: build
