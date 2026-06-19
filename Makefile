@@ -1,4 +1,4 @@
-SRC ?= ./cf/gym104417G.cpp
+SRC ?= ./usaco/silver/reduce.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
