@@ -1,4 +1,4 @@
-SRC ?= ./cf/1772D.cpp
+SRC ?= ./usaco/bronze/whatbase.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
