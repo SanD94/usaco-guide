@@ -1,4 +1,4 @@
-SRC ?= ./usaco/bronze/drought.cpp
+SRC ?= ./dmoj/coci17c5p2.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
