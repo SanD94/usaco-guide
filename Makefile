@@ -1,4 +1,4 @@
-SRC ?= ./usaco/silver/bcount.cpp
+SRC ?= ./usaco/silver/hps.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
