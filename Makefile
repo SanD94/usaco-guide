@@ -1,4 +1,4 @@
-SRC ?= ./usaco/silver/div7.cpp
+SRC ?= ./cf/2008E.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
