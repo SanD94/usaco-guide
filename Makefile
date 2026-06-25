@@ -1,4 +1,4 @@
-SRC ?= ./atcoder/abc125_c.cpp
+SRC ?= ./cf/1398C.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
