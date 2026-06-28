@@ -16,7 +16,7 @@ lli a, b;
 pair<lli, lli> get_indices(lli idx) {
     auto lower = lower_bound(begin(idx_list), end(idx_list), idx);
     lli index = distance(begin(idx_list), lower);
-    return {index, idx - idx_list[index - 1] + index - 1};
+    return {index - 1, idx - idx_list[index - 1] + index - 2};
 }
 
 
@@ -39,8 +39,8 @@ void preprocess() {
 }
 
 lli get_sum(int row, int l, int r) {
-    if (l > r) return 0;
-    return pprefix[r] - pprefix[l - 1] - prefix[row-1] * (r - l + 1);
+    if (l >= r) return 0;
+    return pprefix[r] - pprefix[l] - prefix[row] * (r - l);
 }
 
 lli eval(lli a, lli b) {
@@ -48,8 +48,8 @@ lli eval(lli a, lli b) {
     auto [bi, bj] = get_indices(b);
 
 
-    lli res = ppprefix[bi] - ppprefix[ai - 1];
-    lli left = get_sum(ai, ai, aj - 1);
+    lli res = ppprefix[bi + 1] - ppprefix[ai];
+    lli left = get_sum(ai, ai, aj);
     lli right = get_sum(bi, bj + 1, n);
 
     return res - left - right;
@@ -71,4 +71,3 @@ int main() {
 
     return 0;
 }
-
