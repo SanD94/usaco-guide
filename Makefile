@@ -1,4 +1,4 @@
-SRC ?= ./cses/1652.cpp
+SRC ?= ./cf/245H.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
