@@ -7,22 +7,38 @@ using namespace std;
 
 int n, step;
 vector<vector<int>> grass;
-vector<vector<int>> diag;
+vector<vector<int>> pref;
 
 void set_io(string s) {
     freopen((s + ".in").c_str(), "r", stdin);
     freopen((s + ".out").c_str(), "w", stdout);
 }
 
+// sum = i + j
+// diff = i - j + (n - 1) --> shift
+// (r, c) center
+// abs(i - r) + abs(j - c) <= step
+// abs((i + j) - (r + c)) <= step -> both same sign
+// abs((i - j) - (r - c)) <= step -> opposite signs
+// center - step <= sum <= center + step
+// center - step <= diff <= center + step
 void preprocess() {
-    diag.assign(2*n - 1, vector<int>(n + 1));
-    for (int sm = 0; sm < 2*n - 1; sm++) {
-        int i = min(sm, n - 1), j = sm - i;
-        int lm = sm - i;
-        while (i >= lm) {
-            diag[sm][j+1] = diag[sm][j] + grass[i][j];
-            i --;
-            j ++;
+    int m = 2*n - 1;
+    pref.assign(m + 1, vector<int>(m + 1));
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            int sm = i + j;
+            int diff = i - j + n - 1;
+            pref[sm + 1][diff + 1] = grass[i][j];
+        }
+    }
+
+    for (int sm = 0; sm < m; sm++) {
+        for (int diff = 0; diff < m; diff++) {
+            pref[sm + 1][diff + 1] += pref[sm][diff + 1]
+                + pref[sm + 1][diff]
+                - pref[sm][diff];
         }
     }
 }
@@ -30,18 +46,21 @@ void preprocess() {
 
 int eval() {
     int res = 0;
+    int m = 2*n - 1;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            int cur = 0;
-            int sm = i + j - step;
-            int beg = j - step;
-            for (int k = 0; k < step * 2 + 1; k++, sm++) {
-                if (sm < 0) continue; 
-                if (sm >= 2*n - 1) break;
-                int sz = step + 1 - (k % 2);
-                beg += k % 2;
-                cur += diag[sm][min(max(beg + sz, 0), min(sm + 1, n))] - diag[sm][max(beg, 0)];
-            }
+            int sm = i + j;
+            int diff = i - j + n - 1;
+
+            int sm1 = max(0, sm - step);
+            int sm2 = min(m - 1, sm + step);
+            int diff1 = max(0, diff - step);
+            int diff2 = min(m - 1, diff + step);
+
+            int cur = pref[sm2 + 1][diff2 + 1]
+                - pref[sm1][diff2 + 1]
+                - pref[sm2 + 1][diff1]
+                + pref[sm1][diff1];
             res = max(res, cur);
         }
     }
@@ -63,6 +82,4 @@ int main() {
     cout << eval() << endl;
     return 0;
 }
-
-
 
