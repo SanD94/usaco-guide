@@ -1,4 +1,4 @@
-SRC ?= ./usaco/silver/lazy.cpp
+SRC ?= ./usaco/silver/pasture.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
