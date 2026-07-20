@@ -1,4 +1,4 @@
-SRC ?= ./usaco/silver/pasture.cpp
+SRC ?= ./atcoder/agc015_c.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
