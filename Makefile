@@ -1,4 +1,4 @@
-SRC ?= ./usaco/platinum/art.cpp
+SRC ?= ./cf/295A.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
