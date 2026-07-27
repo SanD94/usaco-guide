@@ -52,49 +52,46 @@ int main() {
         return p[x2][y2] - p[x1][y2] - p[x2][y1] + p[x1][y1];
     };
 
+    // top-bottom left-right is defined in terms of memory layout
     vector<int> top(MAXN + 1), bottom(MAXN + 1), left(MAXN + 1), right(MAXN + 1);
     for (int i = 1; i <= MAXN; i++) {
-        for (int x1 = 0; x1 < i; x1++) {
-            int running_sum = 0, sum = 0;
+        // left i right
+        for (int l = 0; l < i; l++) {
+            int t_run_sum = 0, t_sum = 0;
+            int l_run_sum = 0, l_sum = 0;
             for (int j = 0; j < MAXN; j++) {
-                int elem = rect_sum(x1, j, i, j+1);
-                running_sum = max(elem + running_sum, 0);
-                sum = max(sum, running_sum);
+                int t_elem = rect_sum(l, j, i, j+1);
+                t_run_sum = max(t_elem + t_run_sum, 0);
+                t_sum = max(t_sum, t_run_sum);
+
+                int l_elem = rect_sum(j, l, j+1, i);
+                l_run_sum = max(l_elem + l_run_sum, 0);
+                l_sum = max(l_sum, l_run_sum);
             }
-            top[i] = max(sum, top[i]);
+            top[i] = max(t_sum, top[i]);
+            left[i] = max(l_sum, left[i]);
         }
-        for (int x2 = i + 1; x2 <= MAXN; x2++) {
-            int running_sum = 0, sum = 0;
+        for (int r = i + 1; r <= MAXN; r++) {
+            int b_run_sum = 0, b_sum = 0;
+            int r_run_sum = 0, r_sum = 0;
             for (int j = 0; j < MAXN; j++) {
-                int elem = rect_sum(i, j, x2, j+1);
-                running_sum = max(elem + running_sum, 0);
-                sum = max(sum, running_sum);
+                int b_elem = rect_sum(i, j, r, j+1);
+                b_run_sum = max(b_elem + b_run_sum, 0);
+                b_sum = max(b_sum, b_run_sum);
+
+                int r_elem = rect_sum(j, i, j+1, r);
+                r_run_sum = max(r_elem + r_run_sum, 0);
+                r_sum = max(r_sum, r_run_sum);
             }
-            bottom[i] = max(sum, bottom[i]);
-        }
-        for (int y1 = 0; y1 < i; y1++) {
-            int running_sum = 0, sum = 0;
-            for (int j = 0; j < MAXN; j++) {
-                int elem = rect_sum(j, y1, j+1, i);
-                running_sum = max(elem + running_sum, 0);
-                sum = max(sum, running_sum);
-            }
-            left[i] = max(sum, left[i]);
-        }
-        for (int y2 = i + 1; y2 <= MAXN; y2++) {
-            int running_sum = 0, sum = 0;
-            for (int j = 0; j < MAXN; j++) {
-                int elem = rect_sum(j, i, j+1, y2);
-                running_sum = max(elem + running_sum, 0);
-                sum = max(sum, running_sum);
-            }
-            right[i] = max(sum, right[i]);
+            bottom[i] = max(b_sum, bottom[i]);
+            right[i] = max(r_sum, right[i]);
         }
     }
+
     for (int i = 1; i <= MAXN; i++) {
         top[i] = max(top[i], top[i-1]);
         left[i] = max(left[i], left[i-1]);
-        int rev_i = 200 - i;
+        int rev_i = MAXN - i;
         bottom[rev_i] = max(bottom[rev_i], bottom[rev_i + 1]);
         right[rev_i] = max(right[rev_i], right[rev_i + 1]);
     }
