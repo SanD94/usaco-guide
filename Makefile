@@ -1,4 +1,4 @@
-SRC ?= ./usaco/gold/paintbarn.cpp
+SRC ?= ./cf/279B.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
