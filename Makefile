@@ -1,4 +1,4 @@
-SRC ?= ./usaco/bronze/revegetate.cpp
+SRC ?= ./usaco/bronze/factory.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
