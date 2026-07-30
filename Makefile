@@ -1,4 +1,4 @@
-SRC ?= ./usaco/silver/herding.cpp
+SRC ?= ./cf/814C.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
