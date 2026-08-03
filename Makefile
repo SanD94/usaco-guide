@@ -1,4 +1,4 @@
-SRC ?= ./ojuz/ceoi10-tower.cpp
+SRC ?= ./usaco/silver/haybales.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
