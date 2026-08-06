@@ -1,4 +1,4 @@
-SRC ?= ./usaco/gold/walk-manhattan.cpp
+SRC ?= ./cf/1201C.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
