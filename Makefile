@@ -1,4 +1,4 @@
-SRC ?= ./usaco/gold/angry.cpp
+SRC ?= ./usaco/silver/loan.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
