@@ -1,4 +1,4 @@
-SRC ?= ./usaco/gold/cowdependence.cpp
+SRC ?= ./usaco/platinum/balancing.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
