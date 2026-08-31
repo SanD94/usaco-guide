@@ -30,86 +30,61 @@ void set_io(string s) {
   freopen((s + ".out").c_str(), "w", stdout);
 }
 
-struct bounds {
-    vector<int> bottom_max, top_min;
-};
-
-// Accumulate one side of the vertical fence. For every vertical cut,
-// bottom_max is the largest horizontal cut with at most lim cows below it,
-// and top_min is the smallest cut with at most lim cows above it.
-bounds get_bounds(const vector<point>& cows, int lim) {
+// For each vertical cut, find the largest horizontal cut whose
+// lower-left prefix contains at most lim cows.
+vector<int> get_bounds(const vector<point>& cows, int lim) {
     int n = cows.size();
-    bounds res{vector<int>(n + 1), vector<int>(n + 1)};
-    vector<int> y_frequency(n);
-    int bottom_max = n, top_min = 0;
-    int bottom_count = 0, top_count = 0;
+    vector<int> res(n + 1), y_frequency(n);
+    int y_bound = n, count = 0;
 
-    auto add = [&](const point& cow) {
-        int y = cow.y;
-        y_frequency[y]++;
-        if (y < bottom_max) bottom_count++;
-        if (y >= top_min) top_count++;
-    };
-    auto update_bounds = [&] {
-        while (bottom_count > lim) 
-            bottom_count -= y_frequency[--bottom_max];
-        
-        while (top_count > lim) 
-            top_count -= y_frequency[top_min++];
-    };
-
-    res.bottom_max[0] = bottom_max;
-    res.top_min[0] = top_min;
+    res[0] = y_bound;
     size_t cow_index = 0;
-    for (int cut = 1; cut <= n; cut++) {
-        while (cow_index < cows.size() && cows[cow_index].x == cut - 1)
-            add(cows[cow_index++]);
-        
-        update_bounds();
-        res.bottom_max[cut] = bottom_max;
-        res.top_min[cut] = top_min;
+    for (int x = 1; x <= n; x++) {
+        while (cow_index < cows.size() && cows[cow_index].x == x - 1) {
+            int y = cows[cow_index++].y;
+            y_frequency[y]++;
+            if (y < y_bound) count++;
+        }
+
+        while (count > lim)
+            count -= y_frequency[--y_bound];
+        res[x] = y_bound;
     }
 
     return res;
 }
 
-bool can_balance(const vector<point>& cows, const vector<point>& mirrored,
-                 int lim) {
-    int n = cows.size();
-    bounds left = get_bounds(cows, lim);
-    bounds right = get_bounds(mirrored, lim);
+bool can_balance(const vector<point>& sw, const vector<point>& se,
+                 const vector<point>& nw, const vector<point>& ne, int lim) {
+    int n = sw.size();
+    vector<int> sw_bound = get_bounds(sw, lim);
+    vector<int> se_bound = get_bounds(se, lim);
+    vector<int> nw_bound = get_bounds(nw, lim);
+    vector<int> ne_bound = get_bounds(ne, lim);
 
     for (int x = 0; x <= n; x++) {
-        int lower = max(left.top_min[x], right.top_min[n - x]);
-        int upper = min(left.bottom_max[x], right.bottom_max[n - x]);
-        if (lower <= upper) return true;
+        int bottom = min(sw_bound[x], se_bound[n - x]);
+        int mirrored_top = min(nw_bound[x], ne_bound[n - x]);
+        if (bottom + mirrored_top >= n) return true;
     }
     return false;
 }
 
 
 void compress(vector<point>& cows) {
-    sort(all(cows));
-    int i = 0;
-    int cur_i = cows[0].x;
-    for (auto &c: cows) {
-        if (c.x != cur_i) {
-            cur_i = c.x;
-            i++;
+    for (int point::*axis : {&point::x, &point::y}) {
+        sort(all(cows), [axis](const point& a, const point& b) {
+            return a.*axis < b.*axis;
+        });
+        int rank = 0, previous = cows[0].*axis;
+        for (point& cow : cows) {
+            int coordinate = cow.*axis;
+            if (coordinate != previous) {
+                previous = coordinate;
+                rank++;
+            }
+            cow.*axis = rank;
         }
-        c.x = i;
-    }
-
-    sort(all(cows), [](const point& lhs, const point &rhs) {
-        return tie(lhs.y, lhs.x) < tie(rhs.y, rhs.x);
-    });
-    i = 0, cur_i = cows[0].y;
-    for (auto &c: cows) {
-        if (c.y != cur_i) {
-            cur_i = c.y;
-            i++;
-        }
-        c.y = i;
     }
     sort(all(cows));
 }
@@ -124,14 +99,21 @@ int main() {
     copy_n(istream_iterator<point>(cin), N, back_inserter(cows));
 
     compress(cows);
-    vector<point> mirrored = cows;
-    for (point &cow: mirrored) cow.x = N - 1 - cow.x;
-    sort(all(mirrored));
+    vector<point> sw = cows, se = cows, nw = cows, ne = cows;
+    for (point &cow: se) cow.x = N - 1 - cow.x;
+    for (point &cow: nw) cow.y = N - 1 - cow.y;
+    for (point &cow: ne) {
+        cow.x = N - 1 - cow.x;
+        cow.y = N - 1 - cow.y;
+    }
+    sort(all(se));
+    sort(all(nw));
+    sort(all(ne));
 
     int l = 0, r = N;
     while (l < r) {
         int m = l + (r - l) / 2;
-        if (can_balance(cows, mirrored, m)) r = m;
+        if (can_balance(sw, se, nw, ne, m)) r = m;
         else l = m + 1;
     }
 
