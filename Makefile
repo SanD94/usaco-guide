@@ -1,4 +1,4 @@
-SRC ?= ./usaco/platinum/balancing.cpp
+SRC ?= ./cses/1620.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
