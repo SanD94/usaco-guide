@@ -59,6 +59,7 @@ input
 output
 *.in
 *.out
+judge
 sol
 sol.cpp
 compile_flags.txt
