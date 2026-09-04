@@ -1,4 +1,4 @@
-SRC ?= ./codechef/TRPTSTIC.cpp
+SRC ?= ./cses/2422.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
