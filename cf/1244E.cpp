@@ -9,14 +9,6 @@ using namespace std;
 
 using ll = long long;
 
-vector<ll> calc_diff(vector<ll>& arr) {
-    int n = (int)arr.size();
-    vector<ll> res(n);
-    for (int i = 1; i < n; i++)
-        res[i] = res[i - 1] + i * abs(arr[i] - arr[i - 1]);
-    return res;
-}
-
 int main() {
     int n;
     ll k;
@@ -25,12 +17,13 @@ int main() {
     copy_n(istream_iterator<ll>(cin), n, back_inserter(arr));
     sort(all(arr));
 
-    vector<ll> rev_arr = arr;
-    reverse(all(rev_arr));
+    vector<ll> pref(n + 1);
+    for (int i = 0; i < n; i++)
+        pref[i + 1] = pref[i] + arr[i];
 
-    auto diff_left = calc_diff(arr);
-    auto diff_right = calc_diff(rev_arr);
-    reverse(all(diff_right));
+    auto get_sub_sum = [&](int b, int e) {
+        return pref[e] - pref[b];
+    };
 
     auto eval = [&](ll m) {
         int right = 0;
@@ -39,9 +32,8 @@ int main() {
             ll right_b = left_b + m;
             while (right < n && arr[right] <= right_b) right++;
 
-            ll sum = diff_left[i];
-            if (right < n)
-                sum += diff_right[right] + (arr[right] - right_b) * (n - right);
+            ll sum = left_b * i - get_sub_sum(0, i);
+            sum += get_sub_sum(right, n) - right_b * (n - right);
 
             if (sum <= k) return true;
         }
@@ -52,8 +44,8 @@ int main() {
             ll left_b = right_b - m;
             while (left < n && arr[left] < left_b) left++;
 
-            ll sum = diff_right[i];
-            sum += diff_left[left] - (arr[left] - left_b) * left;
+            ll sum = left_b * left - get_sub_sum(0, left);
+            sum += get_sub_sum(i, n) - right_b * (n - i);
 
             if (sum <= k) return true;
         }
@@ -72,4 +64,3 @@ int main() {
     
     return 0;
 }
-
