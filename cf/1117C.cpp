@@ -11,52 +11,32 @@ const ll MAX_RES = 1e18;
 struct point {
     ll x, y;
 
-    point operator+(const point& p) const {
-        return { x + p.x, y + p.y };
-    }
-    
-    point operator-(const point& p) const {
-        return { x - p.x, y - p.y };
-    }
+    point operator+(const point& p) const { return { x + p.x, y + p.y }; }
+    point operator-(const point& p) const { return { x - p.x, y - p.y }; }
+    point operator*(const ll a) const { return { a * x, a * y }; }
 
-    point operator*(const ll a) const {
-        return { a * x, a * y };
-    }
+    friend point operator*(ll a, const point& p) { return p * a; }
+    friend istream& operator>>(istream& is, point& p) { return is >> p.x >> p.y; }
 
-    friend istream& operator>>(istream& is, point& p) {
-        return is >> p.x >> p.y;
-    }
-
-    friend point operator*(ll a, const point& p) {
-        return p * a;
-    }
-
-    ll abs_dist() {
-        return abs(x) + abs(y);
-    }
+    ll abs_dist() const { return abs(x) + abs(y); }
 };
 
-string dir_str = "ULDR";
-size_t get_index(char c) {
-    for (size_t i = 0; i < dir_str.size(); i++)
-        if (dir_str[i] == c) return i;
-    return -1;
+
+point get_dir(char c) {
+    return {
+        (c == 'R') - (c == 'L'),
+        (c == 'U') - (c == 'D')
+    };
 }
-
-vector<point> dirs = {
-    {0, 1}, {-1, 0}, {0, -1}, {1, 0}
-};
 
 vector<point> get_prefix(string& s, int n) {
     vector<point> res(n+1);
 
     for (int i = 0; i < n; i++)
-        res[i+1] = res[i] + dirs[get_index(s[i])];
+        res[i+1] = res[i] + get_dir(s[i]);
 
     return res;
 }
-
-
 
 
 int main() {
@@ -66,14 +46,11 @@ int main() {
     cin >> source >> dest;
     cin >> n >> s;
     vector<point> p_arr = get_prefix(s, n);
-    auto calc_prefix = [&](int i) {
-        return p_arr[i] - p_arr[0];
-    };
 
     ll l = 0, r = MAX_RES;
     while (l < r) {
         ll m = l + (r - l) / 2;
-        point wind_cost = m / n * calc_prefix(n) + calc_prefix(m % n);
+        point wind_cost = m / n * p_arr[n] + p_arr[m % n];
         ll tot_cost = (dest - (source + wind_cost)).abs_dist();
         if (tot_cost <= m) r = m;
         else l = m + 1;
@@ -83,5 +60,3 @@ int main() {
     cout << l << endl;
     return 0;
 }
-
-
