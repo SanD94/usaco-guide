@@ -1,4 +1,4 @@
-SRC ?= ./ojuz/boi12-mobile.cpp
+SRC ?= ./cf/gym102951D.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
