@@ -1,4 +1,4 @@
-SRC ?= ./usaco/silver/lifeguards.cpp
+SRC ?= ./usaco/silver/rental.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
