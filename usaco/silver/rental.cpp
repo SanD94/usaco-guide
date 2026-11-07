@@ -18,16 +18,14 @@ void set_io(string s) {
 using ll = long long;
 using cow = ll;
 using rent = ll;
+using milk = ll;
 
 struct buyer {
-    ll amount, cent;
+    milk amount;
+    ll cent;
     
     friend istream& operator>>(istream& is, buyer& b) {
         return is >> b.amount >> b.cent;
-    }
-
-    friend ostream& operator<<(ostream& os, const buyer& b) {
-        return os << "[" << b.amount << " " << b.cent << "]";
     }
 
     friend bool operator<(const buyer& lhs, const buyer& rhs) {
@@ -53,61 +51,41 @@ int main() {
     copy_n(istream_iterator<buyer>(cin), m, back_inserter(buyers));
     copy_n(istream_iterator<rent>(cin), r, back_inserter(rents));
 
-    ll res = 0, cur_res = 0;
-
-    sort(all(cows));
+    sort(all(cows), greater<cow>());
     sort(all(buyers), greater<buyer>());
     sort(all(rents), greater<rent>());
 
-    auto rent_cow = [&](bool really) {
-        static size_t i = 0;
-        if (really) {
-            if (i == rents.size()) return false;
-            cur_res += rents[i++];
-        } else {
-            if (i == 0) return false;
-            cur_res -= rents[--i];
+    // total profit from milk
+    vector<milk> milk_profit(n+1);
+    int buyer_idx = 0;
+    for (int i = 0; i < n; i++) {
+        milk_profit[i+1] = milk_profit[i];
+        milk remaining = cows[i];
+
+        while(remaining && buyer_idx < m) {
+            auto [amount, price] = buyers[buyer_idx];
+            milk produce = min(remaining, amount);
+
+            milk_profit[i+1] += produce * price;
+            amount -= produce;
+            remaining -= produce;
+
+            buyers[buyer_idx].amount = amount;
+            if (amount == 0) buyer_idx++;
         }
-        return true;
-    };
-
-
-    auto sell_milk = [&](int ci) {
-        static size_t i = 0;
-        if (i == buyers.size()) return false;
-
-        auto [amount, cent] = buyers[i];
-        ll produce = min(amount, cows[ci]);
-
-
-        cows[ci] -= produce;
-        buyers[i].amount -= produce;
-
-        if (buyers[i].amount == 0) i++;
-
-        cur_res += produce * cent;
-
-        return true;
-    };
-
-    size_t i = 0;
-    while (i < cows.size() && rent_cow(true)) i++;
-    int buy_i = (int)i - 1;
-    while (i < cows.size() && sell_milk(i)) if (cows[i] == 0) i++;
-    res = cur_res;
-
-    while (buy_i >= 0) {
-        rent_cow(false);
-        while(cows[buy_i] != 0 && sell_milk(buy_i));
-
-        res = max(res, cur_res);
-        buy_i--;
     }
 
+    r = min(r, n);
 
+    vector<rent> rentals(r+1);
+    for (int i = 0; i < r; i++)
+        rentals[i+1] = rentals[i] + rents[i];
+
+    ll res = 0;
+    for (int i = 0; i <= n; i++)
+        res = max(res, milk_profit[i] + rentals[min(n - i, r)]);
+    
     cout << res << endl;
 
     return 0;
 }
-
-
