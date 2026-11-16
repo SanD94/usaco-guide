@@ -4,7 +4,6 @@
 #include <vector>
 #include <algorithm>
 #include <tuple>
-#include <functional>
 using namespace std;
 
 #define all(x) begin(x), end(x)
@@ -51,7 +50,7 @@ int main() {
     sort(all(nm));
 
     vector<int> killer(n, -1);
-    vector<vector<int>> kill(n, vector<int>());
+    vector<int> res(n);
 
 
     for (const auto& n : nm)
@@ -65,30 +64,14 @@ int main() {
 
         int diff_n = t - n, diff_e = t - e;
         if (diff_n < diff_e) { // north is the killer
+            res[nid] += 1 + res[eid];
             killer[eid] = nid;
-            kill[nid].push_back(eid);
         } else if (diff_e < diff_n) {
+            res[eid] += 1 + res[nid];
             killer[nid] = eid;
-            kill[eid].push_back(nid);
         }
+        
     }
-
-    vector<bool> mark(n);
-    vector<int> res(n);
-
-    function<int(int)> dead_count = [&](int i) -> int {
-        if (mark[i]) return res[i];
-        mark[i] = true;
-
-        int cur_res = 0;
-        for (auto dead : kill[i])
-            cur_res += 1 + dead_count(dead);
-        res[i] = cur_res;
-        return cur_res;
-    };
-
-    for (int i = 0; i < n; i++)
-        dead_count(i);
 
     copy(all(res), ostream_iterator<int>(cout, "\n"));
     return 0;
