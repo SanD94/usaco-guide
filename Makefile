@@ -1,4 +1,4 @@
-SRC ?= ./usaco/gold/split.cpp
+SRC ?= ./cf/632C.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
