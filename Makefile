@@ -1,4 +1,4 @@
-SRC ?= ./usaco/silver/stuck-rut.cpp
+SRC ?= ./usaco/gold/split.cpp
 SUBMISSION ?= sol.cpp
 OUT ?= sol
 INPUT ?= input
